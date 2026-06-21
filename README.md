@@ -50,6 +50,18 @@ scores = reward(completions, answer=references)
 The reward expects completions containing a `<think>...</think>` block followed by
 a `\boxed{}` final answer; correctness is checked with `math_verify`.
 
+## Results
+
+Main results (step 1200; each cell is **accuracy (%) / mean total tokens**, with token reduction vs Base in parentheses). Because length pressure is applied only to correct rollouts and is adapted by a control loop, ACOER stays stable where length-penalty baselines collapse.
+
+| Method | MATH-500 | MATH-Hard | AIME 2025 | OlympiadBench |
+|---|---|---|---|---|
+| Base | 88.8 / 5,553 | 76.4 / 7,958 | 30.0 / 13,298 | 55.3 / 9,579 |
+| **ACOER (ours)** | 88.4 / **2,134** (−62%) | **78.1** / 3,509 (−56%) | **36.7** / 8,922 (−33%) | 55.3 / 5,177 (−46%) |
+| GRPO-acc (accuracy-only) | 88.8 / 4,091 (−26%) | 77.6 / 6,277 (−21%) | 33.3 / 11,836 (−11%) | 56.2 / 7,982 (−17%) |
+
+ACOER cuts thinking tokens by 33–62% while matching or improving accuracy over the base model, and improves over the accuracy-only GRPO baseline on MATH-Hard and AIME 2025. Length-penalty baselines (GRPO+LP, GRPO-LEAD, ReCUT) collapse under sustained optimization (e.g. GRPO+LP falls to 68.0% on MATH-500); the structural collapse rate is **8/8** for continuous incorrect-answer penalties vs **1/6** for correct-only / binary rewards. See the paper for the full table.
+
 ## Citation
 
 A BibTeX entry will be added once the arXiv version is available.
