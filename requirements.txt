@@ -1,0 +1,6 @@
+torch>=2.1
+transformers>=4.46
+trl>=0.12
+peft>=0.13
+datasets>=2.20
+math_verify>=0.5
