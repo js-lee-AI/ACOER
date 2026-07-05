@@ -9,3 +9,7 @@ outputs/
 wandb/
 *.log
 .DS_Store
+
+# keep README figure assets
+!assets/
+!assets/*.png

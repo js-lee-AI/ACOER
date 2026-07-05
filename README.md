@@ -1,14 +1,36 @@
-# ACOER: Adaptive Correct-Only Efficiency Reward
+<div align="center">
 
-Training code for **ACOER**, the reward proposed in *Beyond Penalizing Mistakes:
-Stabilizing Efficiency Training in Large Reasoning Models via Adaptive
-Correct-Only Rewards.*
+# ⚖️ ACOER
 
-ACOER stabilizes GRPO efficiency training by (i) applying length pressure **only
-to correct rollouts**, so incorrect answers never receive a continuous length
-penalty (the primary collapse loop), and (ii) running a **control loop** that
-adapts the efficiency weight from EMA accuracy/length trends and normalizes by an
-**adaptive token budget**, preventing over-compression of correct answers.
+### Adaptive Correct-Only Efficiency Reward
+
+<em>Beyond Penalizing Mistakes: Stabilizing Efficiency Training in Large Reasoning Models via Adaptive Correct-Only Rewards</em>
+
+[![arXiv](https://img.shields.io/badge/arXiv-2606.22716-b31b1b.svg)](https://arxiv.org/abs/2606.22716)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-green.svg)](LICENSE)
+[![Paper: CC BY 4.0](https://img.shields.io/badge/Paper-CC%20BY%204.0-blue.svg)](https://arxiv.org/abs/2606.22716)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
+[![Stars](https://img.shields.io/github/stars/js-lee-AI/ACOER?style=social)](https://github.com/js-lee-AI/ACOER/stargazers)
+
+<img src="assets/framework.png" width="88%" alt="ACOER framework" />
+
+<em>Length pressure on <b>correct rollouts only</b>, plus a control loop that keeps GRPO efficiency training from collapsing.</em>
+
+<b><a href="https://arxiv.org/abs/2606.22716">📄 Paper</a> · <a href="#overview">✨ Overview</a> · <a href="#install">⚙️ Install</a> · <a href="#train">🚀 Train</a> · <a href="#results">📊 Results</a> · <a href="#citation">📌 Citation</a></b>
+
+</div>
+
+---
+
+## News
+
+- **2026-06** · Paper released on [arXiv](https://arxiv.org/abs/2606.22716), and the training code is public here.
+
+## Overview
+
+Training code for **ACOER**, the reward proposed in *Beyond Penalizing Mistakes: Stabilizing Efficiency Training in Large Reasoning Models via Adaptive Correct-Only Rewards.*
+
+ACOER stabilizes GRPO efficiency training by (i) applying length pressure **only to correct rollouts**, so incorrect answers never receive a continuous length penalty (the primary collapse loop), and (ii) running a **control loop** that adapts the efficiency weight from EMA accuracy/length trends and normalizes by an **adaptive token budget**, preventing over-compression of correct answers.
 
 This repository contains the training code only (no datasets, no baselines).
 
@@ -16,6 +38,8 @@ This repository contains the training code only (no datasets, no baselines).
 acoer/reward.py     ACOERReward (the proposed reward) + a format reward
 train_acoer.py      minimal TRL GRPO training loop using ACOER + LoRA
 ```
+
+> Paper: *Beyond Penalizing Mistakes: Stabilizing Efficiency Training in Large Reasoning Models via Adaptive Correct-Only Rewards* ([arXiv:2606.22716](https://arxiv.org/abs/2606.22716)).
 
 ## Install
 
@@ -32,12 +56,9 @@ python train_acoer.py --model Qwen/Qwen3-1.7B --output_dir runs/acoer \
     --max_steps 1200 --seed 42
 ```
 
-The training data (MATH + GSM8K) is pulled from the Hugging Face Hub by
-`build_dataset` in `train_acoer.py`; no data is bundled here. ACOER
-hyperparameters default to the paper values and can be overridden via flags
-(`--alpha_init`, `--alpha_max`, `--budget_ratio`, `--warmup_steps`, ...).
+The training data (MATH + GSM8K) is pulled from the Hugging Face Hub by `build_dataset` in `train_acoer.py`; no data is bundled here. ACOER hyperparameters default to the paper values and can be overridden via flags (`--alpha_init`, `--alpha_max`, `--budget_ratio`, `--warmup_steps`, ...).
 
-## Using the reward on its own
+### Using the reward on its own
 
 ```python
 from acoer.reward import ACOERReward
@@ -47,8 +68,7 @@ reward = ACOERReward()                 # paper defaults
 scores = reward(completions, answer=references)
 ```
 
-The reward expects completions containing a `<think>...</think>` block followed by
-a `\boxed{}` final answer; correctness is checked with `math_verify`.
+The reward expects completions containing a `<think>...</think>` block followed by a `\boxed{}` final answer; correctness is checked with `math_verify`.
 
 ## Results
 
@@ -64,7 +84,7 @@ ACOER cuts thinking tokens by 33–62% while matching or improving accuracy over
 
 ## Citation
 
-```text
+```bibtex
 @article{lee2026beyond,
   title={Beyond Penalizing Mistakes: Stabilizing Efficiency Training in Large Reasoning Models via Adaptive Correct-Only Rewards},
   author={Lee, Jungseob and Lee, Seungyoon and Hong, Seongtae and Kim, Minhyuk and Park, Chanjun and Lim, Heuiseok},
