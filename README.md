@@ -64,7 +64,14 @@ ACOER cuts thinking tokens by 33–62% while matching or improving accuracy over
 
 ## Citation
 
-A BibTeX entry will be added once the arXiv version is available.
+```text
+@article{lee2026beyond,
+  title={Beyond Penalizing Mistakes: Stabilizing Efficiency Training in Large Reasoning Models via Adaptive Correct-Only Rewards},
+  author={Lee, Jungseob and Lee, Seungyoon and Hong, Seongtae and Kim, Minhyuk and Park, Chanjun and Lim, Heuiseok},
+  journal={arXiv preprint arXiv:2606.22716},
+  year={2026}
+}
+```
 
 ## License
 
