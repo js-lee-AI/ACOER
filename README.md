@@ -7,6 +7,7 @@
 <em>Beyond Penalizing Mistakes: Stabilizing Efficiency Training in Large Reasoning Models via Adaptive Correct-Only Rewards</em>
 
 [![arXiv](https://img.shields.io/badge/arXiv-2606.22716-b31b1b.svg)](https://arxiv.org/abs/2606.22716)
+[![Project Page](https://img.shields.io/badge/Project-Page-2f55a4.svg)](https://js-lee-ai.github.io/ACOER/)
 [![License: MIT](https://img.shields.io/badge/Code-MIT-green.svg)](LICENSE)
 [![Paper: CC BY 4.0](https://img.shields.io/badge/Paper-CC%20BY%204.0-blue.svg)](https://arxiv.org/abs/2606.22716)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
@@ -16,7 +17,7 @@
 
 <em>Length pressure on <b>correct rollouts only</b>, plus a control loop that keeps GRPO efficiency training from collapsing.</em>
 
-<b><a href="https://arxiv.org/abs/2606.22716">📄 Paper</a> · <a href="#overview">✨ Overview</a> · <a href="#install">⚙️ Install</a> · <a href="#train">🚀 Train</a> · <a href="#results">📊 Results</a> · <a href="#citation">📌 Citation</a></b>
+<b><a href="https://js-lee-ai.github.io/ACOER/">🌐 Project Page</a> · <a href="https://arxiv.org/abs/2606.22716">📄 Paper</a> · <a href="#overview">✨ Overview</a> · <a href="#install">⚙️ Install</a> · <a href="#train">🚀 Train</a> · <a href="#results">📊 Results</a> · <a href="#citation">📌 Citation</a></b>
 
 </div>
 
