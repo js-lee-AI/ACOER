@@ -73,7 +73,7 @@ The reward expects completions containing a `<think>...</think>` block followed 
 
 ## Results
 
-Main results (step 1200; each cell is **accuracy (%) / mean total tokens**, with token reduction vs Base in parentheses). Because length pressure is applied only to correct rollouts and is adapted by a control loop, ACOER stays stable where length-penalty baselines collapse.
+Main results on Qwen3-1.7B (each cell is **accuracy (%) / mean generated tokens**, with token reduction vs Base in parentheses). ACOER is shown at its final step (1,200) without checkpoint selection, and GRPO-acc at its best checkpoint (step 1,000). Because length pressure is applied only to correct rollouts and is adapted by a control loop, ACOER stays stable where length-penalty baselines collapse.
 
 | Method | MATH-500 | MATH-Hard | AIME 2025 | OlympiadBench |
 |---|---|---|---|---|
@@ -81,7 +81,7 @@ Main results (step 1200; each cell is **accuracy (%) / mean total tokens**, with
 | **ACOER (ours)** | 88.4 / **2,134** (−62%) | **78.1** / 3,509 (−56%) | **36.7** / 8,922 (−33%) | 55.3 / 5,177 (−46%) |
 | GRPO-acc (accuracy-only) | 88.8 / 4,091 (−26%) | 77.6 / 6,277 (−21%) | 33.3 / 11,836 (−11%) | 56.2 / 7,982 (−17%) |
 
-ACOER cuts thinking tokens by 33–62% while matching or improving accuracy over the base model, and improves over the accuracy-only GRPO baseline on MATH-Hard and AIME 2025. Length-penalty baselines (GRPO+LP, GRPO-LEAD, ReCUT) collapse under sustained optimization (e.g. GRPO+LP falls to 68.0% on MATH-500); the structural collapse rate is **8/8** for continuous incorrect-answer penalties vs **1/6** for correct-only / binary rewards. See the paper for the full table.
+ACOER cuts generated tokens by 33–62% while keeping accuracy on par with the base model, with differences of −0.4, +1.7, +6.7, and 0.0 points. GRPO-acc keeps accuracy as well but removes a much smaller share of the tokens (11–26%), since its reward contains no explicit length term. Length-penalty baselines (GRPO+LP, GRPO-LEAD, ReCUT) collapse under sustained optimization (e.g. GRPO+LP falls to 68.0% on MATH-500 at step 1,200). See the paper for the full table.
 
 ## Citation
 
